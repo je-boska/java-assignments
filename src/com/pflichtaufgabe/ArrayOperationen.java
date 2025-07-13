@@ -1,9 +1,7 @@
 package com.pflichtaufgabe;
 
-import java.util.Arrays;
-
 public class ArrayOperationen {
-    public double mittelwertBerechnen(double[] array, int startIndex, int endIndex) {
+    public double mittelwertBerechnen(double[] array, int startIndex, int endIndex) throws NullPointerException, IllegalArgumentException {
         if (array == null) {
             throw new NullPointerException("null-Array");
         }
@@ -26,7 +24,7 @@ public class ArrayOperationen {
         return sum / amountOfElements;
     }
 
-    public void arrayAusgeben(double[] array) {
+    public void arrayAusgeben(double[] array) throws NullPointerException {
         if (array == null) {
             throw new NullPointerException("null-Array");
         }
@@ -43,7 +41,7 @@ public class ArrayOperationen {
         System.out.println();
     }
 
-    public double[] duplikateEntfernen(double[] array) {
+    public double[] duplikateEntfernen(double[] array) throws NullPointerException {
         if (array == null) {
             throw new NullPointerException("null-Array");
         }
@@ -75,7 +73,7 @@ public class ArrayOperationen {
         return arrayOhneDuplikate;
     }
 
-    public boolean enthaeltDuplikate(double[] array) {
+    public boolean enthaeltDuplikate(double[] array) throws IllegalArgumentException {
         if (array.length == 0) {
             throw new IllegalArgumentException("Leeres Array");
         }
@@ -98,7 +96,7 @@ public class ArrayOperationen {
         return istDuplikat;
     }
 
-    public double[] arrayQuadrierenUndSortieren(double[] array) {
+    public double[] arrayQuadrierenUndSortieren(double[] array) throws NullPointerException {
         if (array == null) {
             throw new NullPointerException("null-Array");
         }
@@ -108,24 +106,19 @@ public class ArrayOperationen {
             squares[i] = array[i] * array[i];
         }
 
-        double[] sortedArray = new double[squares.length];
-
-        for (int i = 0; i <= squares.length - 1; i++) {
+        for (int i = 1; i <= squares.length - 1; i++) {
             double key = squares[i];
             int j = i - 1;
-            if (i == 0) {
-                sortedArray[i] = squares[i];
-            }
 
-            while (j >= 0 && sortedArray[j] > key) {
-                double tmp = sortedArray[j];
-                sortedArray[j] = key;
-                sortedArray[j + 1] = tmp;
+            while (j >= 0 && squares[j] > key) {
+                double tmp = squares[j];
+                squares[j] = key;
+                squares[j + 1] = tmp;
                 j--;
             }
-            sortedArray[j + 1] = key;
+            squares[j + 1] = key;
         }
 
-        return sortedArray;
+        return squares;
     }
 }

@@ -1,7 +1,5 @@
 package com.pflichtaufgabe;
 
-import java.util.Arrays;
-
 public class TestArrayOperationen {
 
     public static void berechnen(double[] array1, int startIndex, int endIndex) {
@@ -10,7 +8,7 @@ public class TestArrayOperationen {
 
         try {
             mittelwert = arrayOperationen.mittelwertBerechnen(array1, startIndex, endIndex);
-            System.out.println("Mittlewert: " + mittelwert);
+            System.out.println("Mittelwert: " + mittelwert);
         } catch (NullPointerException e) {
             System.out.println("NullPointerException abgefangen");
         } catch (IllegalArgumentException e) {
