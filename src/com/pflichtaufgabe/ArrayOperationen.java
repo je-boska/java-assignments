@@ -109,12 +109,13 @@ public class ArrayOperationen {
         }
 
         double[] sortedArray = new double[squares.length];
-        sortedArray[0] = squares[0];
 
-        for (int i = 1; i <= squares.length - 1; i++) {
+        for (int i = 0; i <= squares.length - 1; i++) {
             double key = squares[i];
             int j = i - 1;
-            System.out.println("Iteration: " + i);
+            if (i == 0) {
+                sortedArray[i] = squares[i];
+            }
 
             while (j >= 0 && sortedArray[j] > key) {
                 double tmp = sortedArray[j];
