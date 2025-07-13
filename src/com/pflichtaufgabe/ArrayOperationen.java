@@ -1,7 +1,8 @@
 package com.pflichtaufgabe;
 
 public class ArrayOperationen {
-    public double mittelwertBerechnen(double[] array, int startIndex, int endIndex) throws NullPointerException, IllegalArgumentException {
+    // Diese methode berechnet mittelwerte von arrays von doubles
+    public static double mittelwertBerechnen(double[] array, int startIndex, int endIndex) throws NullPointerException, IllegalArgumentException {
         if (array == null) {
             throw new NullPointerException("null-Array");
         }
@@ -24,7 +25,8 @@ public class ArrayOperationen {
         return sum / amountOfElements;
     }
 
-    public void arrayAusgeben(double[] array) throws NullPointerException {
+    // Diese methode gibt ein formatiertes Array auf der Konsole aus
+    public static void arrayAusgeben(double[] array) throws NullPointerException {
         if (array == null) {
             throw new NullPointerException("null-Array");
         }
@@ -41,7 +43,8 @@ public class ArrayOperationen {
         System.out.println();
     }
 
-    public double[] duplikateEntfernen(double[] array) throws NullPointerException {
+    // Diese methode entfertn Duplikate
+    public static double[] duplikateEntfernen(double[] array) throws NullPointerException {
         if (array == null) {
             throw new NullPointerException("null-Array");
         }
@@ -51,7 +54,7 @@ public class ArrayOperationen {
         boolean istDuplikat = false;
 
         for (int i = 0; i <= array.length - 1; i++) {
-            for (int j = 0; j <= i; j++) {
+            for (int j = 0; j < mengeNichtDuplikate; j++) {
                 if (array[i] == tmp[j]) {
                     istDuplikat = true;
                     break;
@@ -64,6 +67,8 @@ public class ArrayOperationen {
             istDuplikat = false;
         }
 
+        // Array ohne duplikate kann kurzer sein als gegebene Array
+        // Deswegen initialisieren wir ein neues Array in die richtige laenge
         double[] arrayOhneDuplikate = new double[mengeNichtDuplikate];
 
         for (int i = 0; i < mengeNichtDuplikate; i++) {
@@ -73,47 +78,36 @@ public class ArrayOperationen {
         return arrayOhneDuplikate;
     }
 
-    public boolean enthaeltDuplikate(double[] array) throws IllegalArgumentException {
-        if (array.length == 0) {
-            throw new IllegalArgumentException("Leeres Array");
+    // Diese methode prueft ob es Duplikate gibt
+    public static boolean enthaeltDuplikate(double[] array) throws NullPointerException {
+        if (array == null) {
+            throw new NullPointerException("null-Array");
         }
 
-        double[] tmp = new double[array.length];
-        boolean istDuplikat = false;
-
-        for (int i = 0; i <= array.length - 1; i++) {
-            for (int j = 0; j <= i; j++) {
-                if (array[i] == tmp[j]) {
-                    istDuplikat = true;
-                    break;
-                }
-            }
-            if (istDuplikat) {
-                break;
-            }
-            tmp[i] = array[i];
-        }
-        return istDuplikat;
+        double[] original = duplikateEntfernen(array);
+        return original.length != array.length;
     }
 
-    public double[] arrayQuadrierenUndSortieren(double[] array) throws NullPointerException {
+    // Diese methode quadriert und sortiert double arrays
+    public static double[] arrayQuadrierenUndSortieren(double[] array) throws NullPointerException {
         if (array == null) {
             throw new NullPointerException("null-Array");
         }
 
         double[] squares = new double[array.length];
+
+        // Quadrierung
         for (int i = 0; i <= array.length - 1; i++) {
             squares[i] = array[i] * array[i];
         }
 
+        // Insertion sort in place
         for (int i = 1; i <= squares.length - 1; i++) {
             double key = squares[i];
             int j = i - 1;
 
             while (j >= 0 && squares[j] > key) {
-                double tmp = squares[j];
-                squares[j] = key;
-                squares[j + 1] = tmp;
+                squares[j + 1] = squares[j];
                 j--;
             }
             squares[j + 1] = key;

@@ -2,7 +2,8 @@ package com.pflichtaufgabe;
 
 public class TestArrayOperationen {
 
-    public static void berechnen(double[] array1, int startIndex, int endIndex) {
+    // Wrapper-methode um wiederholung der try-catch-block zu vermeiden
+    public static void mittelwertBerechnenMitAusnahmeBehandlung(double[] array1, int startIndex, int endIndex) {
         double mittelwert;
         ArrayOperationen arrayOperationen = new ArrayOperationen();
 
@@ -16,15 +17,15 @@ public class TestArrayOperationen {
         }
     }
 
+    // Ausfuehrung von tests
     public static void main(String[] args) {
-        berechnen(null, 0, 0);
+        mittelwertBerechnenMitAusnahmeBehandlung(null, 0, 0);
 
-        double[] array1 = new double[]{-1.3, 6.7, 2.5, -1.0, -0.5, 0.0};
-        berechnen(array1, 2, 5);
+        double[] array = new double[]{-1.3, 6.7, 2.5, -1.0, -0.5, 0.0};
 
-        berechnen(array1, 3, 3);
-
-        berechnen(array1, 3, 2);
+        mittelwertBerechnenMitAusnahmeBehandlung(array, 2, 5);
+        mittelwertBerechnenMitAusnahmeBehandlung(array, 3, 3);
+        mittelwertBerechnenMitAusnahmeBehandlung(array, 3, 2);
 
         ArrayOperationen arrayOperationen = new ArrayOperationen();
 
@@ -52,5 +53,6 @@ public class TestArrayOperationen {
 
         double[] testArray6 = new double[]{1.5, -2.0, 3.0, -4.5};
         arrayOperationen.arrayAusgeben(arrayOperationen.arrayQuadrierenUndSortieren(testArray6));
+
     }
 }
