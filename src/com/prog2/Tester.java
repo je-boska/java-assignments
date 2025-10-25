@@ -12,10 +12,16 @@ public class Tester {
 
         Person joe = new Person(24, "Joe");
         joe.speak();
+        joe.growOlder();
+        joe.speak();
         joe.staticSpeak("Alice", 39);
 
         Student fred = new Student(23, "Fred", "Philosophy");
         fred.speak();
         fred.tellCourse();
+
+        String[] arr = {"Bark", "Woof", "Woof", "Bark", "Bark"};
+        String mfe = MostFrequentElement.findMostFrequentElement(arr);
+        System.out.println("Most frequent element:" + mfe);
     }
 }

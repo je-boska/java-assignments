@@ -21,6 +21,10 @@ public class Person {
         System.out.println("Hi, I'm " + name + ", and I'm " + age + " years old.");
     }
 
+    public void growOlder() {
+        ++age;
+    }
+
     /**
      * Class(static) method
      */
